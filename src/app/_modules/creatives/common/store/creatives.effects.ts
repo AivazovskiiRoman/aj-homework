@@ -1,0 +1,47 @@
+import { Injectable } from '@angular/core';
+import { Actions, Effect, ofType } from '@ngrx/effects';
+
+import { CreativesService } from '../services/creatives.service';
+
+import { Creative } from '../models/creative';
+
+import {
+  CreativesActionType,
+  GetCreativesSuccess,
+  GetCreativesFailed,
+  DeleteCreativeSuccess,
+  DeleteCreativeFailed
+} from './creatives.actions';
+
+import { switchMap, catchError, map } from 'rxjs/operators';
+import { of } from 'rxjs';
+
+@Injectable()
+export class CreativesEffects {
+  constructor(
+    private actions$: Actions,
+    private creativesService: CreativesService
+  ) {}
+
+  @Effect()
+  getCreatives$ = this.actions$.pipe(
+    ofType(CreativesActionType.GET_CREATIVES),
+    switchMap(() =>
+      this.creativesService.getAll().pipe(
+        map((creatives: Array<Creative>) => new GetCreativesSuccess(creatives)),
+        catchError(error => of(new GetCreativesFailed(error)))
+      )
+    )
+  );
+
+  @Effect()
+  deleteCreative$ = this.actions$.pipe(
+    ofType(CreativesActionType.DELETE_CREATIVE),
+    switchMap(action =>
+      this.creativesService.deleteItem(action['payload']).pipe(
+        map((id: number) => new DeleteCreativeSuccess(id)),
+        catchError(error => of(new DeleteCreativeFailed(error)))
+      )
+    )
+  );
+}
