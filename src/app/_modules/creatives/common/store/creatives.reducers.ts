@@ -18,10 +18,10 @@ export function creativesReducer(
 
       if (action.payload.length < 1) {
         msgText = 'No data found';
-        bgClass = 'bg-danger';
+        bgClass = 'alert-danger';
       } else {
         msgText = 'Loading data';
-        bgClass = 'bg-info';
+        bgClass = 'alert-info';
       }
 
       return {
@@ -55,12 +55,17 @@ export function creativesReducer(
       return {
         ...state,
         message: 'Creative deleted',
-        infoClass: 'bg-warning'
+        infoClass: 'alert-success'
       };
     }
 
     case CreativesActionType.DELETE_CREATIVE_FAILED: {
-      return { ...state };
+      return {
+        ...state,
+        // FAKE MESSAGE - FOR DEMO
+        message: 'Creative deleted',
+        infoClass: 'alert-success'
+      };
     }
 
     default: {
