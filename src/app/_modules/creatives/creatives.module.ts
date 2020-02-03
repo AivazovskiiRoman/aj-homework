@@ -15,6 +15,7 @@ import { CreativeListComponent } from './components/creative-list/creative-list.
 import { creativesReducer } from './common/store/creatives.reducers';
 import { CreativesEffects } from './common/store/creatives.effects';
 import { CreativesService } from './common/services/creatives.service';
+import { CreativesOfCampaignComponent } from './components/creatives-of-campaign/creatives-of-campaign.component';
 
 export function logger(reducer: ActionReducer<any>): any {
   return storeLogger()(reducer);
@@ -23,7 +24,11 @@ export function logger(reducer: ActionReducer<any>): any {
 export const metaReducers = [logger];
 
 @NgModule({
-  declarations: [CreativeComponent, CreativeListComponent],
+  declarations: [
+    CreativeComponent,
+    CreativeListComponent,
+    CreativesOfCampaignComponent
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
