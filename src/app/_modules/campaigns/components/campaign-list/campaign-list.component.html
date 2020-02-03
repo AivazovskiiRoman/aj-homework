@@ -10,7 +10,7 @@
     <table class="table">
       <tbody>
         <tr *ngFor="let campaign of campaigns | paginate: { itemsPerPage: 5, currentPage: page }">
-          <td>
+          <td class="campaign__btn">
             <app-campaign [campaign]="campaign"></app-campaign>
           </td>
         </tr>
