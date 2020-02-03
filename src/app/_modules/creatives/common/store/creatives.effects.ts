@@ -9,6 +9,8 @@ import {
   CreativesActionType,
   GetCreativesSuccess,
   GetCreativesFailed,
+  GetCreativesByIdSuccess,
+  GetCreativesByIdFailed,
   DeleteCreativeSuccess,
   DeleteCreativeFailed
 } from './creatives.actions';
@@ -18,6 +20,8 @@ import { of } from 'rxjs';
 
 @Injectable()
 export class CreativesEffects {
+  creativesById: any;
+
   constructor(
     private actions$: Actions,
     private creativesService: CreativesService
@@ -30,6 +34,23 @@ export class CreativesEffects {
       this.creativesService.getAll().pipe(
         map((creatives: Array<Creative>) => new GetCreativesSuccess(creatives)),
         catchError(error => of(new GetCreativesFailed(error)))
+      )
+    )
+  );
+
+  @Effect()
+  getCreativesById$ = this.actions$.pipe(
+    ofType(CreativesActionType.GET_CREATIVES_BY_ID),
+    switchMap(action =>
+      this.creativesService.getAll().pipe(
+        map((creatives: Array<Creative>) => {
+          this.creativesById = creatives.find(
+            creative => creative.parentId === action['payload']
+          );
+          creatives = this.creativesById;
+          return new GetCreativesByIdSuccess(creatives);
+        }),
+        catchError(error => of(new GetCreativesByIdFailed(error)))
       )
     )
   );

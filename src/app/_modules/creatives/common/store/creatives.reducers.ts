@@ -36,6 +36,34 @@ export function creativesReducer(
       return { ...state };
     }
 
+    case CreativesActionType.GET_CREATIVES_BY_ID: {
+      return { ...state };
+    }
+
+    case CreativesActionType.GET_CREATIVES_BY_ID_SUCCESS: {
+      let msgText = '';
+      let bgClass = '';
+
+      if (Object.keys(action.payload).length === 0) {
+        msgText = 'No data found';
+        bgClass = 'alert-danger';
+      } else {
+        msgText = 'Loading data';
+        bgClass = 'alert-info';
+      }
+
+      return {
+        ...state,
+        creativeList: [action.payload],
+        message: msgText,
+        infoClass: bgClass
+      };
+    }
+
+    case CreativesActionType.GET_CREATIVES_BY_ID_FAILED: {
+      return { ...state };
+    }
+
     case CreativesActionType.DELETE_CREATIVE: {
       const creatives = state;
       creatives['creativeList'].forEach((creative: Creative, i: number) => {
