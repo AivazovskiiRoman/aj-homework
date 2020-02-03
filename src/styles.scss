@@ -1,1 +1,45 @@
-/* You can add global styles to this file, and also import other style files */
+.jumbotron {
+  color: #fff;
+  background-color: #777;
+  border-radius: 0;
+}
+
+.alert {
+  position: absolute;
+  margin-top: 15px;
+  width: 90%;
+  z-index: 99;
+  opacity: 0.9;
+  text-align: center;
+  left: 50%;
+  transform: translateX(-50%);
+
+  &-danger {
+    background-color: #8C4843;
+    border-color: #8C4843;
+  }
+
+  &-info {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+  }
+}
+
+.label {
+  display: block;
+  font-size: 12px;
+  font-weight: bold;
+  color: #777;
+}
+
+.btn-danger {
+  background-color: #777;
+  border-color: #777;
+}
+
+.ngx-pagination {
+  .current {
+    background: #777 !important;
+  }
+}
