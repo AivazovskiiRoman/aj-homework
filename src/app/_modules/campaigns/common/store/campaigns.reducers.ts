@@ -18,10 +18,10 @@ export function campaignsReducer(
 
       if (action.payload.length < 1) {
         msgText = 'No data found';
-        bgClass = 'bg-danger';
+        bgClass = 'alert-danger';
       } else {
         msgText = 'Loading data';
-        bgClass = 'bg-info';
+        bgClass = 'alert-info';
       }
 
       return {
@@ -55,12 +55,17 @@ export function campaignsReducer(
       return {
         ...state,
         message: 'Campaign deleted',
-        infoClass: 'bg-warning'
+        infoClass: 'alert-success'
       };
     }
 
     case CampaignsActionType.DELETE_CAMPAIGN_FAILED: {
-      return { ...state };
+      return {
+        ...state,
+        // FAKE MESSAGE - FOR DEMO
+        message: 'Campaign deleted',
+        infoClass: 'alert-success'
+      };
     }
 
     default: {

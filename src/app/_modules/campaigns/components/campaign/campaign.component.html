@@ -1,1 +1,36 @@
-<p>campaign works!</p>
+<div class="row text-center">
+  <div class="col-2">
+    <span class="label">Id</span>
+    <p>{{campaign.id}}</p>
+  </div>
+  <div class="col-2">
+    <span class="label">Advertiser</span>
+    <p>{{campaign.advertiser}}</p>
+  </div>
+  <div class="col-2">
+    <span class="label">Name</span>
+    <p>{{campaign.name}}</p>
+  </div>
+  <div class="col-1">
+    <span class="label">CPM</span>
+    <p>{{campaign.cpm}}</p>
+  </div>
+  <div class="col-2">
+    <span class="label">Start Date</span>
+    <p>{{campaign.startDate}}</p>
+  </div>
+  <div class="col-2">
+    <span class="label">End Date</span>
+    <p>{{campaign.endDate}}</p>
+  </div>
+  <div class="col-1">
+    <span class="label">
+      &nbsp;
+    </span>
+    <div class="btn-group btn-group-sm">
+      <button class="btn btn-sm btn-danger" (click)="deleteCampaign(campaign.id)">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>
