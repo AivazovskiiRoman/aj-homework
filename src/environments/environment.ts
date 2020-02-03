@@ -4,7 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'http://homework.ad-juster.com/api'
+  // apiUrl: 'http://homework.ad-juster.com/api'
+  apiUrl: 'http://localhost:4200/api'
 };
 
 /*

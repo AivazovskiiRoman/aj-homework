@@ -1,0 +1,10 @@
+{
+  "/api": {
+    "target": "http://homework.ad-juster.com/api",
+    "secure": false,
+    "pathRewrite": {
+      "^/api": ""
+    },
+    "changeOrigin": true
+  }
+}
